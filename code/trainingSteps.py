@@ -2,74 +2,74 @@ import torch
 
 def train(model, loaders, optimizer,loss_func,batch_size, device):
 
-    model.train()
+	model.train()
 
-    y_pred = []
-    y_true = []
-    running_loss = 0.0
-    epoch_steps = 0
+	y_pred = []
+	y_true = []
+	running_loss = 0.0
+	epoch_steps = 0
 
 
-    for i, (images, labels) in enumerate(loaders['train']):
+	for i, (images, labels) in enumerate(loaders['train']):
 		
-    	images=images.to(device)
-    	labels=labels.to(device)
-	
-        optimizer.zero_grad()
-        outputs=model(images)
-        loss=loss_func(outputs,labels)
-        loss.backward()
-        optimizer.step()
-          
-        # conf
-        preds = (torch.max(torch.exp(outputs), 1)[1]).data.cpu().numpy()
-        y_pred.extend(preds) 
-                    
-        labels = labels.data.cpu().numpy()
-        y_true.extend(labels) 
+		images=images.to(device)
+		labels=labels.to(device)
 
-        running_loss += loss.item()*(len(labels)/batch_size)
-        epoch_steps += 1
+		optimizer.zero_grad()
+		outputs=model(images)
+		loss=loss_func(outputs,labels)
+		loss.backward()
+		optimizer.step()
 
-        pass
+		# conf
+		preds = (torch.max(torch.exp(outputs), 1)[1]).data.cpu().numpy()
+		y_pred.extend(preds) 
 
-    return running_loss/epoch_steps , y_true, y_pred
+		labels = labels.data.cpu().numpy()
+		y_true.extend(labels) 
+
+		running_loss += loss.item()*(len(labels)/batch_size)
+		epoch_steps += 1
+
+		pass
+
+	return running_loss/epoch_steps , y_true, y_pred
 
 def validate(model, loaders,optimizer,loss_func,batch_size, device,val_type='valid', scheduler=None):
 
-    model.eval()
+	model.eval()
 
-    y_pred = []
-    y_true = []
-    val_loss = 0.0
-    val_steps = 0
+	y_pred = []
+	y_true = []
+	val_loss = 0.0
+	val_steps = 0
 
-    with torch.no_grad():
-        for i, (images, labels) in enumerate(loaders[val_type]):
+	with torch.no_grad():
+		for i, (images, labels) in enumerate(loaders[val_type]):
 		
-            images=images.to(device)
+			images=images.to(device)
 			labels=labels.to(device)
-		
-            outputs=model(images)
-            loss=loss_func(outputs,labels)
 
-            # info
-            preds = (torch.max(torch.exp(outputs), 1)[1]).data.cpu().numpy()
-            y_pred.extend(preds) 
-  
-            labels = labels.data.cpu().numpy()
-            y_true.extend(labels) 
+			outputs=model(images)
+			loss=loss_func(outputs,labels)
 
-            val_loss += loss.cpu().numpy()*(len(labels)/batch_size)
-            val_steps += 1
+			# info
+			preds = (torch.max(torch.exp(outputs), 1)[1]).data.cpu().numpy()
+			y_pred.extend(preds) 
 
-            pass
-    if scheduler is not None:
-        scheduler.step(val_loss / val_steps)
+			labels = labels.data.cpu().numpy()
+			y_true.extend(labels) 
 
-    return val_loss/val_steps , y_true, y_pred
+			val_loss += loss.cpu().numpy()*(len(labels)/batch_size)
+			val_steps += 1
 
-def	getLoaders(dataset, batch_size,train_idx,valid_idx,test_idx):
+			pass
+		if scheduler is not None:
+		scheduler.step(val_loss / val_steps)
+
+	return val_loss/val_steps , y_true, y_pred
+
+def getLoaders(dataset, batch_size,train_idx,valid_idx,test_idx):
 	train_sampler = torch.utils.data.SubsetRandomSampler(train_idx)
 	valid_sampler = torch.utils.data.SubsetRandomSampler(valid_idx)
 	test_sampler = torch.utils.data.SubsetRandomSampler(test_idx)
