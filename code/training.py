@@ -6,6 +6,7 @@ import tfg.code.utils as ut
 import torch.nn as nn
 from torch import optim
 from sklearn.metrics import confusion_matrix,accuracy_score,f1_score
+from sklearn.model_selection import train_test_split
 
 def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model, batch_size, lr, paciencia, verbose=False):
 
