@@ -50,7 +50,7 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 	# run
 
 	for epoch in range(num_epochs):
-		config.epoch= epoch+config.epoch
+		
 		train_loss,train_y_true, train_y_pred=train(model, loaders, optimizer,loss_func,batch_size, device)   
 		valid_loss ,valid_y_true, valid_y_pred=validate(model, loaders, optimizer,loss_func,batch_size, device)
 
@@ -70,11 +70,12 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 		config.valid_confs.append(valid_cfm)
 
 		if verbose:
-			ut.printEpochResult(config.epoch,train_accu,train_loss,valid_accu,valid_loss,train_cfm,valid_cfm)
+			ut.printEpochResult(epoch+sessioninfo.epoch,train_accu,train_loss,valid_accu,valid_loss,train_cfm,valid_cfm)
 
 		stopSave = earlyStoper.update(f1)
 
 		if stopSave==True:
+			sessioninfo.epoch= epoch+sessioninfo.epoch
 			modelstate= modelState(model.state_dict(),optimizer.state_dict())
 			saveCheck(carpeta,nom,databaseinfo,config,modelstate,sessioninfo)   
 
