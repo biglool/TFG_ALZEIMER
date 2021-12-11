@@ -1,5 +1,6 @@
 import ipywidgets as ipyw
 import numpy as np
+import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix,classification_report,accuracy_score,ConfusionMatrixDisplay
 import seaborn as sn
