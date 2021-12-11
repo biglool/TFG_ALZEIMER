@@ -48,7 +48,7 @@ def validate(model, loaders,optimizer,loss_func,batch_size, device,val_type='val
         for i, (images, labels) in enumerate(loaders[val_type]):
 		
             images=images.to(device)
-	    labels=labels.to(device)
+			labels=labels.to(device)
 		
             outputs=model(images)
             loss=loss_func(outputs,labels)
@@ -81,3 +81,4 @@ def	getLoaders(dataset, batch_size,train_idx,valid_idx,test_idx):
 	}
 	
 	return loaders
+
