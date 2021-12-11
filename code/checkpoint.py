@@ -15,7 +15,7 @@ def saveCheck(carpeta,nom,databaseinfo,config,modelstate,sessioninfo):
 	}, carpeta + nom )
 	
 
-def loadCheck(carpeta,nom)
+def loadCheck(carpeta,nom):
 
     checkpoint = torch.load(carpeta+nom )
     databaseinfo =checkpoint['databaseinfo']
