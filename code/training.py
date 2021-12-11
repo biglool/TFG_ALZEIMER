@@ -28,7 +28,8 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 		valid_idx, test_idx= train_test_split(valid_idx,test_size=0.5,shuffle=True, stratify=valid_targs)
 		print(problemType)
 		print(cut)
-		databaseinfo=databaseInfo(1,2,train_idx,valid_idx,test_idx)
+		#(problemType,cut,train_idx,valid_idx,test_idx)
+		databaseinfo=databaseInfo(1,2,3,4,5)
 		config=sessionConfig(model,lr,batch_size,paciencia)		
 		sessioninfo= trainSessionInfo()
 
