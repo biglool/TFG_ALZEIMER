@@ -51,7 +51,7 @@ class ADNI_Dataset(Dataset):
         if problem == 'EMCIvsLMCI' :
             self.info = self.baseInfo[self.baseInfo['Research Group'].isin(['EMCI', 'LMCI'])] 
 			
-	classes_inf=[]
+        classes_inf=[]
         classes=np.unique(self.info['Research Group'])
         if 'AD' in classes:
             classes_inf.append('AD')
