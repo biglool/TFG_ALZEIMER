@@ -1,6 +1,6 @@
 
-from tfg.code.models import densenet3D as DN3
-from tfg.code.models import resnet3D as Res3
+from tfg.code.model import densenet3D as DN3
+from tfg.code.model import resnet3D as Res3
 
 def generate_model(model_depth, **kwargs):
     assert model_depth in ['Densenet121', 'Densenet169', 'Densenet201', 'Densenet264','Resnet10', 'Resnet18', 'Resnet34', 'Resnet50', 'Resnet101', 'Resnet152', 'Resnet200']
