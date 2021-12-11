@@ -31,7 +31,7 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 		print(train_idx)
 		print(valid_idx)
 		print(test_idx)
-		databaseinfo=databaseInfo(problemType,cut,1,2,3)
+		databaseinfo=databaseInfo(1,2,train_idx,valid_idx,test_size)
 		config=sessionConfig(model,lr,batch_size,paciencia)		
 		sessioninfo= trainSessionInfo()
 
