@@ -54,16 +54,16 @@ class ADNI_Dataset(Dataset):
 			
         classes_inf=[]
         classes=np.unique(self.info['Research Group'])
-        if 'AD' in classes:
-            classes_inf.append('AD')
-        if 'MCI' in classes:
-            classes_inf.append('MCI')
-        if 'LMCI' in classes:
-            classes_inf.append('LMCI')
-        if 'EMCI' in classes:
-            classes_inf.append('EMCI')
         if 'CN' in classes:
             classes_inf.append('CN')
+        if 'EMCI' in classes:
+            classes_inf.append('EMCI')
+        if 'LMCI' in classes:
+            classes_inf.append('LMCI')
+        if 'MCI' in classes:
+            classes_inf.append('MCI')
+        if 'AD' in classes:
+            classes_inf.append('AD')
 
         self.targets_inf= self.info['Research Group']
         self.classes_inf=classes_inf 
