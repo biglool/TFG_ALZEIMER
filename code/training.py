@@ -80,9 +80,9 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 			saveCheck(carpeta,nom,databaseinfo,config,modelstate,sessioninfo)   
 
 			if verbose:
-				printConf(train_cfm)
-				printConf(valid_cfm)
-				printGrafs( sessioninfo.train_accus, sessioninfo.train_losses, sessioninfo.valid_accus, sessioninfo.valid_losses)		
+				ut.printConf(train_cfm)
+				ut.printConf(valid_cfm)
+				ut.printGrafs( sessioninfo.train_accus, sessioninfo.train_losses, sessioninfo.valid_accus, sessioninfo.valid_losses)		
 
 		if earlyStoper.paciencia==0:
 			break
