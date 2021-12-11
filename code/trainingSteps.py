@@ -63,7 +63,7 @@ def validate(model, loaders,optimizer,loss_func,batch_size, device,val_type='val
 
     return val_loss/val_steps , y_true, y_pred
 
-def	getLoaders(train_idx,valid_idx,test):
+def	getLoaders(train_idx,valid_idx,test_idx):
 	train_sampler = torch.utils.data.SubsetRandomSampler(train_idx)
 	valid_sampler = torch.utils.data.SubsetRandomSampler(valid_idx)
 	test_sampler = torch.utils.data.SubsetRandomSampler(test_idx)
