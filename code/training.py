@@ -1,8 +1,8 @@
 import os
 from tfg.code.checkpoint import saveCheck,loadCheck,databaseInfo,sessionConfig,modelState,trainSessionInfo
-from trainingSteps import train, validate, getLoaders
-from models import generate_model
-import utils as ut
+from tfg.code.trainingSteps import train, validate, getLoaders
+from tfg.code.models import generate_model
+import tfg.code.utils as ut
 import torch.nn as nn
 from torch import optim
 from sklearn.metrics import confusion_matrix,accuracy_score,f1_score
