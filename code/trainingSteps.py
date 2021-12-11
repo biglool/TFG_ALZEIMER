@@ -65,7 +65,7 @@ def validate(model, loaders,optimizer,loss_func,batch_size, device,val_type='val
 
 			pass
 		if scheduler is not None:
-		scheduler.step(val_loss / val_steps)
+			scheduler.step(val_loss / val_steps)
 
 	return val_loss/val_steps , y_true, y_pred
 
