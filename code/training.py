@@ -62,12 +62,12 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 		valid_accu = accuracy_score(valid_y_true, valid_y_pred)
 		f1=f1_score(valid_y_true, valid_y_pred)
 
-		config.train_accus.append(train_accu)
-		config.train_losses.append(train_loss)
-		connfig.valid_losses.append(valid_loss)
-		config.valid_accus.append(valid_accu)
-		config.train_confs.append(train_cfm)
-		config.valid_confs.append(valid_cfm)
+		sessioninfo.train_accus.append(train_accu)
+		sessioninfo.train_losses.append(train_loss)
+		sessioninfo.valid_losses.append(valid_loss)
+		sessioninfo.valid_accus.append(valid_accu)
+		sessioninfo.train_confs.append(train_cfm)
+		sessioninfo.valid_confs.append(valid_cfm)
 
 		if verbose:
 			ut.printEpochResult(epoch+sessioninfo.epoch,train_accu,train_loss,valid_accu,valid_loss,train_cfm,valid_cfm)
@@ -82,7 +82,7 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 			if verbose:
 				printConf(train_cfm)
 				printConf(valid_cfm)
-				printGrafs( config.train_accus, config.train_losses, config.valid_accus, config.valid_losses)		
+				printGrafs( sessioninfo.train_accus, sessioninfo.train_losses, sessioninfo.valid_accus, sessioninfo.valid_losses)		
 
 		if earlyStoper.paciencia==0:
 			break
