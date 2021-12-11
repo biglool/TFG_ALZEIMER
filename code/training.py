@@ -26,8 +26,9 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 	    	#fem split si no s'ha fet (70/15/15)
 		train_idx, valid_idx, train_targs, valid_targs = train_test_split(np.arange(dataset.__len__()),dataset.targets(),test_size=0.3,shuffle=True, stratify=dataset.targets())
 		valid_idx, test_idx= train_test_split(valid_idx,test_size=0.5,shuffle=True, stratify=valid_targs)
-
-		databaseinfo=databaseInfo(problemType,np.array(cut),train_idx,valid_idx,test_idx)
+		
+		print(cut)
+		databaseinfo=databaseInfo(problemType,1,train_idx,valid_idx,test_idx)
 		config=sessionConfig(model,lr,batch_size,paciencia)		
 		sessioninfo= trainSessionInfo()
 
