@@ -33,6 +33,7 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 
 	# carguem objectes 
 	num_epochs = 200
+	base_epoch=sessioninfo.epoch
 	batch_size=config.batch_size
 
 	model=generate_model(config.modelId)
@@ -70,12 +71,12 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 		sessioninfo.valid_confs.append(valid_cfm)
 
 		if verbose:
-			ut.printEpochResult(epoch+sessioninfo.epoch,train_accu,train_loss,valid_accu,valid_loss,train_cfm,valid_cfm)
+			ut.printEpochResult(epoch+base_epoch,train_accu,train_loss,valid_accu,valid_loss,train_cfm,valid_cfm)
 
 		stopSave = earlyStoper.update(f1)
 
 		if stopSave==True:
-			sessioninfo.epoch= epoch+sessioninfo.epoch
+			sessioninfo.epoch= epoch+base_epoch
 			modelstate= modelState(model.state_dict(),optimizer.state_dict())
 			saveCheck(carpeta,nom,databaseinfo,config,modelstate,sessioninfo)   
 
