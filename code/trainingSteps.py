@@ -3,8 +3,7 @@ import torch
 def train(model, loaders, optimizer,loss_func,batch_size, device):
 
     model.train()
-    images=images.to(device)
-    labels=labels.to(device)
+
     y_pred = []
     y_true = []
     running_loss = 0.0
@@ -12,7 +11,10 @@ def train(model, loaders, optimizer,loss_func,batch_size, device):
 
 
     for i, (images, labels) in enumerate(loaders['train']):
-        images.to
+		
+    	images=images.to(device)
+    	labels=labels.to(device)
+	
         optimizer.zero_grad()
         outputs=model(images)
         loss=loss_func(outputs,labels)
@@ -36,8 +38,7 @@ def train(model, loaders, optimizer,loss_func,batch_size, device):
 def validate(model, loaders,optimizer,loss_func,batch_size, device,val_type='valid', scheduler=None):
 
     model.eval()
-    images=images.to(device)
-    labels=labels.to(device)
+
     y_pred = []
     y_true = []
     val_loss = 0.0
@@ -45,7 +46,10 @@ def validate(model, loaders,optimizer,loss_func,batch_size, device,val_type='val
 
     with torch.no_grad():
         for i, (images, labels) in enumerate(loaders[val_type]):
-            
+		
+            images=images.to(device)
+	    labels=labels.to(device)
+		
             outputs=model(images)
             loss=loss_func(outputs,labels)
 
