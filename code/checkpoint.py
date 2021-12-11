@@ -32,7 +32,7 @@ class databaseInfo:
         self.cutId=cutId
         self.train_idx = train_idx
         self.valid_idx = valid_idx
-		self.test_idx = test_idx
+	self.test_idx = test_idx
 
 class sessionConfig:
     
