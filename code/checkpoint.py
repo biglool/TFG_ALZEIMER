@@ -17,9 +17,9 @@ def saveCheck(carpeta,nom,databaseinfo,config,modelstate,sessioninfo):
 
 def loadCheck(carpeta,nom):
 
-    checkpoint = torch.load(carpeta+nom )
-    databaseinfo =checkpoint['databaseinfo']
-    config= checkpoint['sessionConfig']
+	checkpoint = torch.load(carpeta+nom )
+	databaseinfo =checkpoint['databaseinfo']
+	config= checkpoint['sessionConfig']
 	sessioninfo=checkpoint['sessioninfo']
 	modelstate=checkpoint['modelstate']
 	return databaseinfo,config,sessioninfo,modelstate
@@ -39,8 +39,8 @@ class sessionConfig:
     def __init__(modelId,lr,batch_size,paciencia):
         self.modelId=modelId
         self.lr=lr
-		self.batch_size = batch_size
-		self.paciencia = paciencia
+	self.batch_size = batch_size
+	self.paciencia = paciencia
 
 class modelState:
 
@@ -53,8 +53,8 @@ class trainSessionInfo:
     def __init__():
         self.epoch=0
         self.train_accus=[]
-		self.train_losses=[]
-		self.train_confs=[]
-		self.valid_losses=[]
-		self.valid_confs=[]
+	self.train_losses=[]
+	self.train_confs=[]
+	self.valid_losses=[]
+	self.valid_confs=[]
 		
