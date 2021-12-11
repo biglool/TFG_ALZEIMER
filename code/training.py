@@ -1,4 +1,5 @@
 import os
+import numpy as np
 from tfg.code.checkpoint import saveCheck,loadCheck,databaseInfo,sessionConfig,modelState,trainSessionInfo
 from tfg.code.trainingSteps import train, validate, getLoaders
 from tfg.code.modelLoader import generate_model
