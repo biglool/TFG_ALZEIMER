@@ -1,5 +1,5 @@
 import os
-from checkpoint import saveCheck,loadCheck,databaseInfo,sessionConfig,modelState,trainSessionInfo
+from tfg.code.checkpoint import saveCheck,loadCheck,databaseInfo,sessionConfig,modelState,trainSessionInfo
 from trainingSteps import train, validate, getLoaders
 from models import generate_model
 import utils as ut
