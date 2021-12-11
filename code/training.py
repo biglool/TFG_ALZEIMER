@@ -1,7 +1,7 @@
 import os
 from tfg.code.checkpoint import saveCheck,loadCheck,databaseInfo,sessionConfig,modelState,trainSessionInfo
 from tfg.code.trainingSteps import train, validate, getLoaders
-from tfg.code.models import generate_model
+from tfg.code.modelLoader import generate_model
 import tfg.code.utils as ut
 import torch.nn as nn
 from torch import optim
