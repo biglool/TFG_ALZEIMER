@@ -30,7 +30,7 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 		print(cut)
 		#(problemType,cut,train_idx,valid_idx,test_idx)
 		databaseinfo=databaseInfo(1,2,3,4,5)
-		config=sessionConfig(model,lr,batch_size,paciencia)		
+		#config=sessionConfig(model,lr,batch_size,paciencia)		
 		sessioninfo= trainSessionInfo()
 
 	# carguem objectes 
