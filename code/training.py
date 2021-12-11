@@ -41,7 +41,7 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 	earlyStoper=ut.EarlyStoper(config.paciencia)
 	loss_func = nn.CrossEntropyLoss() 
 
-	loaders = getLoaders(databaseinfo.train_idx,databaseinfo.valid_idx,databaseinfo.test_idx)
+	loaders = getLoaders(dataset,config.batch_size,databaseinfo.train_idx,databaseinfo.valid_idx,databaseinfo.test_idx)
 
 	if os.path.isfile(carpeta + nom ):
 		model.load_state_dict(modelState.statedic)
