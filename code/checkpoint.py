@@ -27,7 +27,7 @@ def loadCheck(carpeta,nom):
 
 
 class databaseInfo:
-	def __init__(problemtype,cutId,train_idx,valid_idx,test_idx):
+	def __init__(self,problemtype,cutId,train_idx,valid_idx,test_idx):
 		self.problemType=problemtype
 		self.cutId=cutId
 		self.train_idx = train_idx
@@ -35,19 +35,19 @@ class databaseInfo:
 		self.test_idx = test_idx
 
 class sessionConfig:
-	def __init__(modelId,lr,batch_size,paciencia):
+	def __init__(self,modelId,lr,batch_size,paciencia):
 		self.modelId=modelId
 		self.lr=lr
 		self.batch_size = batch_size
 		self.paciencia = paciencia
 
 class modelState:
-	def __init__(statedic,optdic):
+	def __init__(self,statedic,optdic):
 		self.statedic=statedic
 		self.optdic=optdic
 
 class trainSessionInfo:
-	def __init__():
+	def __init__(self):
 		self.epoch=0
 		self.train_accus=[]
 		self.train_losses=[]
