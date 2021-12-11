@@ -51,6 +51,7 @@ class trainSessionInfo:
 		self.epoch=0
 		self.train_accus=[]
 		self.train_losses=[]
+		self.valid_accus=[]
 		self.train_confs=[]
 		self.valid_losses=[]
 		self.valid_confs=[]
