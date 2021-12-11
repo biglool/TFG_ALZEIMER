@@ -44,8 +44,8 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 	loaders = getLoaders(dataset,config.batch_size,databaseinfo.train_idx,databaseinfo.valid_idx,databaseinfo.test_idx)
 
 	if os.path.isfile(carpeta + nom ):
-		model.load_state_dict(modelState.statedic)
-		optimizer.load_state_dict(modelState.optdic)
+		model.load_state_dict(modelstate.statedic)
+		optimizer.load_state_dict(modelstate.optdic)
 
 	# run
 
