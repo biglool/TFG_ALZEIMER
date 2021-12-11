@@ -4,7 +4,7 @@ import os
 import numpy as np  
 
 def saveCheck(carpeta,nom,databaseinfo,config,modelstate,sessioninfo):	
-	if not os.path.exists(carpeta+nom):
+	if not os.path.exists(carpeta):
 		os.makedirs(carpeta)
 	torch.save({
 				'databaseinfo': databaseinfo,
