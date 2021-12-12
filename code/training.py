@@ -107,4 +107,4 @@ def validateModel(carpeta, nom, device, dataset):
 		ut.printMetrics(metrics)
 
 		test_cfnorm= metrics[8] / metrics[8].astype(np.float).sum(axis=1, keepdims=True) 
-		ut.printConf(test_cfnorm)
+		ut.printConf(test_cfnorm,dataset.classes())
