@@ -103,8 +103,10 @@ def validateModel(carpeta, nom, device, dataset):
 		model.load_state_dict(modelstate.statedic)
 		optimizer.load_state_dict(modelstate.optdic)
 		loss,y_true, y_pred=validate(model, loaders, optimizer,loss_func,batch_size, device,'test')
+		print("epoch:")
+		print(sessioninfo.epoch)
 		metrics= ut.getMetrics(loss,y_true, y_pred)
 		ut.printMetrics(metrics)
 
-		test_cfnorm= metrics[8] / metrics[8].astype(np.float).sum(axis=1, keepdims=True) 
+		#test_cfnorm= metrics[8] / metrics[8].astype(np.float).sum(axis=1, keepdims=True) 
 		ut.printConf(test_cfnorm,dataset.classes())
