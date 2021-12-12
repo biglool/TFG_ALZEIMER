@@ -28,7 +28,7 @@ def train(model, loaders, optimizer,loss_func,batch_size, device):
 		labels = labels.data.cpu().numpy()
 		y_true.extend(labels) 
 
-		running_loss += loss.item()*(len(labels)/batch_size)
+		running_loss += loss.item()
 		epoch_steps += 1
 
 		pass
@@ -60,7 +60,7 @@ def validate(model, loaders,optimizer,loss_func,batch_size, device,val_type='val
 			labels = labels.data.cpu().numpy()
 			y_true.extend(labels) 
 
-			val_loss += loss.cpu().numpy()*(len(labels)/batch_size)
+			val_loss += loss.cpu().numpy()
 			val_steps += 1
 
 			pass
