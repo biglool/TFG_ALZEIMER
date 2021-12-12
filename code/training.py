@@ -90,21 +90,21 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 
 def validateModel(carpeta, nom, device, dataset):
 
-  if os.path.isfile(carpeta + nom ):
-	databaseinfo,config,sessioninfo,modelstate= loadCheck(carpeta, nom)
-	dataset.setProblem(databaseinfo.problemType)
-	dataset.setCut(databaseinfo.cutId) 
-  	batch_size=config.batch_size
-  	model=generate_model(config.modelId)
-  	model.to(device)	
-  	optimizer = optim.Adam(model.parameters(), lr = config.lr) 	
-	loss_func = nn.CrossEntropyLoss() 
-	loaders = getLoaders(dataset,config.batch_size,databaseinfo.train_idx,databaseinfo.valid_idx,databaseinfo.test_idx)   
-	model.load_state_dict(modelstate.statedic)
-	optimizer.load_state_dict(modelstate.optdic)
-   	loss,y_true, y_pred=validate(model, loaders, optimizer,loss_func,batch_size, device,'test')
-   	metrics= getMetrics(loss,y_true, y_pred)
-   	ut.printMetrics(metrics)
+	if os.path.isfile(carpeta + nom ):
+		databaseinfo,config,sessioninfo,modelstate= loadCheck(carpeta, nom)
+		dataset.setProblem(databaseinfo.problemType)
+		dataset.setCut(databaseinfo.cutId) 
+		batch_size=config.batch_size
+		model=generate_model(config.modelId)
+		model.to(device)	
+		optimizer = optim.Adam(model.parameters(), lr = config.lr) 	
+		loss_func = nn.CrossEntropyLoss() 
+		loaders = getLoaders(dataset,config.batch_size,databaseinfo.train_idx,databaseinfo.valid_idx,databaseinfo.test_idx)   
+		model.load_state_dict(modelstate.statedic)
+		optimizer.load_state_dict(modelstate.optdic)
+		loss,y_true, y_pred=validate(model, loaders, optimizer,loss_func,batch_size, device,'test')
+		metrics= getMetrics(loss,y_true, y_pred)
+		ut.printMetrics(metrics)
 
-   	test_cfnorm= metrics[8] / metrics[8].astype(np.float).sum(axis=1, keepdims=True) 
-    	ut.printConf(test_cfnorm)
+		test_cfnorm= metrics[8] / metrics[8].astype(np.float).sum(axis=1, keepdims=True) 
+		ut.printConf(test_cfnorm)
