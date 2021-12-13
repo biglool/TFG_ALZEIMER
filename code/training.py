@@ -9,7 +9,7 @@ from torch import optim
 from sklearn.metrics import confusion_matrix,accuracy_score,f1_score
 from sklearn.model_selection import train_test_split
 
-def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model, batch_size, lr, paciencia, verbose=False):
+def simpleTrainExperiment(carpeta, nom, device, dataset,train_idx,valid_idx,test_idx, problemType, cut, model, batch_size, lr, paciencia, verbose=False):
 
 	# carreguem dades o inicialitzem si primer run
 	if os.path.isfile(carpeta + nom ):
@@ -22,10 +22,6 @@ def simpleTrainExperiment(carpeta, nom, device, dataset, problemType, cut, model
 
 		dataset.setProblem(problemType)
 		dataset.setCut(cut)	
-
-	    	#fem split si no s'ha fet (70/15/15)
-		train_idx, valid_idx, train_targs, valid_targs = train_test_split(np.arange(dataset.__len__()),dataset.targets(),test_size=0.3,shuffle=True, stratify=dataset.targets())
-		valid_idx, test_idx= train_test_split(valid_idx,test_size=0.5,shuffle=True, stratify=valid_targs)
 
 		databaseinfo=databaseInfo(problemType,cut,train_idx,valid_idx,test_idx)
 		config=sessionConfig(model,lr,batch_size,paciencia)		
