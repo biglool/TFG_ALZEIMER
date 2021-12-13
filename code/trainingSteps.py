@@ -83,7 +83,7 @@ def getLoaders(dataset, batch_size,train_idx,valid_idx,test_idx):
 	
 	return loaders
 
-def getSplits(dataset)
+def getSplits(dataset):
 	#(70/15/15)
 	train_idx, valid_idx, train_targs, valid_targs = train_test_split(np.arange(dataset.__len__()),dataset.targets(),test_size=0.3,shuffle=True, stratify=dataset.targets())
 	valid_idx, test_idx= train_test_split(valid_idx,test_size=0.5,shuffle=True, stratify=valid_targs)
