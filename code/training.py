@@ -145,8 +145,8 @@ def crossValidate(carpeta, device, dataset, K=5, verbose=True):
 		resultat = validateModel(carpeta, nom, device, dataset, verbose=verbose)
 		resultat.pop(0)
 		resultats.append(resultat)
-		
-	metrics= list(map(lambda items: float(sum(items)) / len(items), zip(*resultats)))
+	
+	metrics= [sum(met)/len(met) for met in zip(resultats)]
 	if verbose:	
 		print("Resultat final:")	
 		ut.printMetrics(metrics)	
