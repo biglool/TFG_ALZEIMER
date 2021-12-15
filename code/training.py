@@ -148,7 +148,7 @@ def crossValidate(carpeta, device, dataset, K=5, verbose=True):
 		
 	metrics= map(lambda items: float(sum(items)) / len(items), zip(*resultats))
 	if verbose:	
-		Print("Resultat final:")	
+		print("Resultat final:")	
 		ut.printMetrics(metrics)	
 	return metrics
 		
