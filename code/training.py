@@ -144,11 +144,9 @@ def crossValidate(carpeta, device, dataset, K=5, verbose=True):
 				
 		resultat = validateModel(carpeta, nom, device, dataset, verbose=verbose)
 		resultat.pop(0) # epoch
-		resultat.pop() # confusio
 		resultats.append(resultat)
 	
-	print([sum(met)/len(met) for met in np.array(resultats).T.tolist()])
-	#metrics= ]
+	metrics= [sum(met)/len(met) for met in np.array(resultats).T.tolist()]
 	if verbose:	
 		print("Resultat final:")	
 		ut.printMetrics(metrics)	
