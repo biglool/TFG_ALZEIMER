@@ -140,7 +140,7 @@ def crossValidate(carpeta, device, dataset, K=5, verbose=True):
 		nom = "fold"+ str(i) +".pt"
 		
 		if verbose:	
-			 Print("Fold:"+ str(i))
+			 print("Fold:"+ str(i))
 				
 		resultat = validateModel(carpeta, nom, device, dataset, verbose=verbose)
 		resultat.pop(0)
