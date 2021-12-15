@@ -86,7 +86,7 @@ def simpleTrainExperiment(carpeta, nom, device, dataset,train_idx,valid_idx,test
 
 		
 		
-def createExperiment(carpeta,nom,problemType,cut,train_idx,test_idx,model,lr,batch_size,valid_idx=[]paciencia=0,max_epoch=200):
+def createExperiment(carpeta,nom,problemType,cut,train_idx,test_idx,model,lr,batch_size,valid_idx=[],paciencia=0,max_epoch=200):
 
 	databaseinfo=databaseInfo(problemType,cut,train_idx,valid_idx,test_idx)
 	config=sessionConfig(model,lr,batch_size,paciencia,max_epoch)		
