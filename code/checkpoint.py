@@ -40,7 +40,7 @@ class sessionConfig:
 		self.lr=lr
 		self.batch_size = batch_size
 		self.paciencia = paciencia
-		self.max_epoch = max_epoch
+		self.max_epochs = max_epoch
 
 class modelState:
 	def __init__(self,statedic,optdic):
