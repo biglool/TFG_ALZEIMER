@@ -5,6 +5,7 @@ import matplotlib.pyplot as plt
 from sklearn.metrics import confusion_matrix,classification_report,accuracy_score,ConfusionMatrixDisplay
 import seaborn as sn
 import sklearn.metrics as mets
+import warnings
 
 class ImageSliceViewer3D:
     
@@ -79,14 +80,24 @@ def printGrafs(train_accu,train_losses,valid_accu,valid_losses):
 
 
 def getMetrics(loss,true, pred):
+
+  warnings.filterwarnings('ignore')
   metrics =[]
   metrics.append(loss)
   metrics.append(mets.accuracy_score(true, pred))
   metrics.append(mets.balanced_accuracy_score(true, pred))
   metrics.append(mets.recall_score(true, pred)) #spe
   metrics.append(mets.recall_score(true, pred, pos_label=0)) #sen
-  metrics.append(mets.precision_score(true, pred))
-  metrics.append(mets.f1_score(true, pred))
+  try:
+    metrics.append(mets.precision_score(true, pred))
+  except:
+    metrics.append(0)
+
+  try:
+    metrics.append(mets.f1_score(true, pred))
+  except:
+    metrics.append(0)
+
   metrics.append(mets.roc_auc_score(true, pred))
   metrics.append(mets.confusion_matrix(true, pred))
 
