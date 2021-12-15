@@ -89,6 +89,7 @@ def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, verbose=Fals
 
 			# guardem	
 			if saveTime==True:
+				print("salvant")
 				sessioninfo.epoch= epoch+base_epoch
 				modelstate= modelState(model.state_dict(),optimizer.state_dict())
 				saveCheck(carpeta,nom,databaseinfo,config,modelstate,sessioninfo)   
@@ -101,6 +102,7 @@ def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, verbose=Fals
 			# sortim
 			
 			if(epoch+base_epoch) == num_epochs or (earlyStop == True and earlyStoper.paciencia==0):
+				print("sortint")
 				break
 
 				
