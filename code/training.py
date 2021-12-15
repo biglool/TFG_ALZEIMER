@@ -133,7 +133,7 @@ def validateModel(carpeta, nom, device, dataset, verbose=False):
 		
 		return  [sessioninfo.epoch] + metrics
 	
-def crossValidate(carpeta, nom, device, dataset, K=5, verbose=True):
+def crossValidate(carpeta, device, dataset, K=5, verbose=True):
 	
 	resultats =[]
 	for i in range(1, K):
