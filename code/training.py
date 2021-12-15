@@ -53,7 +53,7 @@ def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, verbose=Fals
 			earlyStoper=ut.EarlyStoper(config.paciencia)
 			
 		# run
-		for epoch in range(num_epochs):
+		for epoch in range(num_epochs+1):
 
 			
 			train_loss,train_y_true, train_y_pred=train(model, loaders, optimizer,loss_func,batch_size, device)   
