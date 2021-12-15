@@ -150,6 +150,6 @@ def crossValidate(carpeta, nom, device, dataset, K=5, verbose=True):
 	if verbose:	
 		Print("Resultat final:")	
 		ut.printMetrics(metrics)	
-	return metriques
+	return metrics
 		
 	
