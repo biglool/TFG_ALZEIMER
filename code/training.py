@@ -155,7 +155,7 @@ def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, verbose=Fals
 			#hem de guardar?
 			saveTime = False
 			
-			if earlyStop = True:
+			if earlyStop == True:
 				f1=f1_score(valid_y_true, valid_y_pred)
 				saveTime = earlyStoper.update(f1)
 				
@@ -175,7 +175,7 @@ def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, verbose=Fals
 			
 			# sortim
 			
-			if(epoch+base_epoch) == num_epochs or (earlyStop = True and earlyStoper.paciencia==0):
+			if(epoch+base_epoch) == num_epochs or (earlyStop == True and earlyStoper.paciencia==0):
 				break
 
 				
