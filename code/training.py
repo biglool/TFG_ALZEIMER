@@ -124,7 +124,7 @@ def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, verbose=Fals
 		
 		loaders = getLoaders(dataset,config.batch_size,databaseinfo.train_idx,databaseinfo.valid_idx,databaseinfo.test_idx)
 		
-		if earlyStop == true:
+		if earlyStop == True:
 			earlyStoper=ut.EarlyStoper(config.paciencia)
 			
 		# run
