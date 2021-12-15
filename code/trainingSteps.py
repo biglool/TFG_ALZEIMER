@@ -93,6 +93,8 @@ def getSplits(dataset):
 
 def getKfoldSlits(dataset, nslits=5):
 	
-	splits=[]
 	skf = StratifiedKFold(n_splits=nslits)
-	return skf.split(np.arange(dataset.__len__()),dataset.targets())
+	folds=[]
+	for train_idx,test_idx in skf.split(np.arange(dataset.__len__()),dataset.targets()):
+  		folds.append([train_idx,test_idx])
+	return folds
