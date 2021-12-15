@@ -143,7 +143,8 @@ def crossValidate(carpeta, device, dataset, K=5, verbose=True):
 			 print("Fold:"+ str(i))
 				
 		resultat = validateModel(carpeta, nom, device, dataset, verbose=verbose)
-		resultat.pop(0)
+		resultat.pop(0) # epoch
+		resultat.pop() # confusio
 		resultats.append(resultat)
 	
 	metrics= [sum(met)/len(met) for met in zip(resultats)]
