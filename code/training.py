@@ -147,7 +147,8 @@ def crossValidate(carpeta, device, dataset, K=5, verbose=True):
 		resultat.pop() # confusio
 		resultats.append(resultat)
 	
-	metrics= [print(met) for met in zip(resultats)]
+	print(zip(resultats))
+	#metrics= [sum(met)/len(met) for met in zip(resultats)]
 	if verbose:	
 		print("Resultat final:")	
 		ut.printMetrics(metrics)	
