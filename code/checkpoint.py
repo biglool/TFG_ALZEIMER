@@ -35,7 +35,7 @@ class databaseInfo:
 		self.test_idx = test_idx
 
 class sessionConfig:
-	def __init__(self,modelId,lr,batch_size,paciencia):
+	def __init__(self,modelId,lr,batch_size,paciencia,max_epoch):
 		self.modelId=modelId
 		self.lr=lr
 		self.batch_size = batch_size
