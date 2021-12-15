@@ -1,6 +1,6 @@
 import torch
 import numpy as np
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, StratifiedKFold
 
 
 def train(model, loaders, optimizer,loss_func,batch_size, device):
@@ -90,3 +90,9 @@ def getSplits(dataset):
 	train_idx, valid_idx, train_targs, valid_targs = train_test_split(np.arange(dataset.__len__()),dataset.targets(),test_size=0.3,shuffle=True, stratify=dataset.targets())
 	valid_idx, test_idx= train_test_split(valid_idx,test_size=0.5,shuffle=True, stratify=valid_targs)
 	return train_idx, valid_idx , test_idx
+
+def getKfoldSlits(dataset, nslits=5):
+	
+	splits=[]
+	skf = StratifiedKFold(n_splits=nslits)
+	return skf.split(np.arange(dataset.__len__()),dataset.targets())
