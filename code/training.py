@@ -138,7 +138,7 @@ def validateModel(carpeta, nom, device, dataset, verbose=False):
 def crossValidate(carpeta, device, dataset, K=5, verbose=True):
 	
 	resultats =[]
-	for i in range(1, K):
+	for i in range(1, K+1):
 		nom = "fold"+ str(i) +".pt"
 		
 		if verbose:	
