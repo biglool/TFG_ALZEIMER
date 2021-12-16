@@ -121,8 +121,7 @@ class EarlyStoper:
 
 		if self.paciencia< self.max_paciencia:
 			self.paciencia -=1
-			
-		
+					
 		if (self.direction =="min" and self.metric_detected >metric) or (self.direction =="max" and self.metric_detected <metric):
 
 			    self.paciencia= self.max_paciencia-1
