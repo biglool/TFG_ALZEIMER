@@ -25,7 +25,7 @@ def createExperiment(carpeta,nom,problemType,cut,train_idx,test_idx,model,lr,bat
 
 	
 	
-def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, verbose=False):
+def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, metrica ="loss",verbose=False):
 
 	
 	if os.path.isfile(carpeta + nom ):
@@ -50,7 +50,10 @@ def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, verbose=Fals
 		loaders = getLoaders(dataset,config.batch_size,databaseinfo.train_idx,databaseinfo.valid_idx,databaseinfo.test_idx)
 		
 		if earlyStop == True:
-			earlyStoper=ut.EarlyStoper(config.paciencia)
+			if metrica =="loss":
+				earlyStoper=ut.EarlyStoper(config.paciencia,"min")
+			elif metrica =="f1":
+				earlyStoper=ut.EarlyStoper(config.paciencia,"max")
 			
 		# run
 		for epoch in range(num_epochs+1):
@@ -80,9 +83,11 @@ def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, verbose=Fals
 			#hem de guardar?
 			saveTime = False
 			
-			if earlyStop == True:
-				f1=f1_score(valid_y_true, valid_y_pred)
-				saveTime = earlyStoper.update(f1)
+			if earlyStop == True:			
+				if metrica =="loss":
+					earlyStoper=ut.EarlyStoper(valid_loss)
+				elif metrica =="f1":
+					saveTime = earlyStoper.update(f1_score(valid_y_true, valid_y_pred))
 			
 
 			if (epoch+base_epoch) == num_epochs:
