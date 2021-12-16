@@ -108,20 +108,25 @@ def printMetrics(metrics):
 	
 class EarlyStoper:
     
-    def __init__(self, paciencia):
-        self.max_paciencia=paciencia
-        self.paciencia=paciencia
-        self.min_metric_detected = 0
+	def __init__(self, paciencia, direction="min"):
+		self.max_paciencia=paciencia
+		self.paciencia=paciencia
+		if direction =="max":
+			self.metric_detected = 0
+		elif direction =="min":
+			self.metric_detected = 10000
+		self.direction=direction
             
-    def update(self,metric):
+	def update(self,metric):
 
-        if self.paciencia< self.max_paciencia:
-            self.paciencia -=1
-
-        if self.min_metric_detected <metric:
-            self.paciencia= self.max_paciencia-1
+		if self.paciencia< self.max_paciencia:
+			self.paciencia -=1
 			
-            if self.min_metric_detected <metric:
-                self.min_metric_detected = metric
-            return True
-        return False
+		
+		if (self.direction =="min" and self.metric_detected >metric) or (self.direction =="max" and self.metric_detected <metric):
+
+			    self.paciencia= self.max_paciencia-1
+			    self.metric_detected = metric
+			    return True
+
+	return False
