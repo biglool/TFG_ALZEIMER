@@ -127,5 +127,4 @@ class EarlyStoper:
 			    self.paciencia= self.max_paciencia-1
 			    self.metric_detected = metric
 			    return True
-
-	return False
+		return False
