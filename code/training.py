@@ -85,7 +85,7 @@ def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, metrica ="lo
 			
 			if earlyStop == True:			
 				if metrica =="loss":
-					earlyStoper=ut.EarlyStoper(valid_loss)
+					saveTime = earlyStoper.update(valid_loss)
 				elif metrica =="f1":
 					saveTime = earlyStoper.update(f1_score(valid_y_true, valid_y_pred))
 			
