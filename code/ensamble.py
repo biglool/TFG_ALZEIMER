@@ -68,7 +68,7 @@ def stackModelsOutputs(models, device, dataset,outType="preds",val_type='test', 
 		elif not (labels ==y_true):
 			print("Warning el ground truth no coincide")			
 			np.concatenate((a, b))
-		 staked = np.concatenate(staked, np.array(y_pred))
+		 	staked = np.concatenate(staked, np.array(y_pred))
 	return labels, staked
 			
 		
