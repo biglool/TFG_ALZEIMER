@@ -2,6 +2,9 @@ import torch
 import os
 import numpy as np
 from tfg.code.checkpoint import loadCheck,databaseInfo,sessionConfig,modelState,trainSessionInfo
+from tfg.code.modelLoader import generate_model
+from tfg.code.trainingSteps import getLoaders
+
 
 def getPred(model, loaders, device,outType="preds",val_type='test'):
 
