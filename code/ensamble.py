@@ -27,8 +27,8 @@ def getPred(model, loaders, device,outType="preds",val_type='test'):
 			elif outType=="probs":
 				sm = torch.nn.Softmax(dim=1)
 				probabilities = sm(outputs) 
-				print(probabilities[0].data.cpu().numpy())
-				y_pred.extend(probabilities[0].data.cpu().numpy()) 
+				print(probabilities[0].cpu().numpy())
+				y_pred.extend(probabilities[0].cpu().numpy()) 
 
 			labels = labels.data.cpu().numpy()
 			y_true.extend(labels) 
