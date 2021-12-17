@@ -6,6 +6,7 @@ from tfg.code.modelLoader import generate_model
 from tfg.code.trainingSteps import getLoaders
 import collections 
 from collections import Counter
+import tfg.code.utils as ut
 
 def getPred(model, loaders, device,outType="preds",val_type='test'):
 
@@ -77,8 +78,14 @@ def voteMax(models, device, dataset, verbose=False):
 	return true, votemax
 	
 def crossValidateVoteMax(models, device, dataset, K=5,verbose=False):
-
+	resultats=[]
 	for fold in range(1,5):
 		models_fold= [[model, "fold"+ str(fold) +".pt"] for model in models]
 		true, pred =voteMax(models, device, dataset, verbose=verbose)
+		metrics= ut.getMetrics(0,y_true, y_pred)
+		resultats.append(resultat)
+		if verbose:
+			
+		
+	return [sum(met)/len(met) for met in np.array(resultats).T.tolist()]
 		
