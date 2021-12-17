@@ -55,7 +55,7 @@ def validate(model, loaders,optimizer,loss_func,batch_size, device,val_type='val
 
 			outputs=model(images)
 			loss=loss_func(outputs,labels)
-
+			print(outputs)
 			# info
 			preds = (torch.max(torch.exp(outputs), 1)[1]).data.cpu().numpy()
 			y_pred.extend(preds) 
