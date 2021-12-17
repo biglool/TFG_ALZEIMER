@@ -27,7 +27,6 @@ def getPred(model, loaders, device,outType="preds",val_type='test'):
 			elif outType=="probs":
 				sm = torch.nn.Softmax(dim=1)
 				probabilities = sm(outputs) 
-				print(probabilities.data.cpu().numpy())
 				y_pred.extend(probabilities.data.cpu().numpy()) 
 
 			labels = labels.data.cpu().numpy()
@@ -56,4 +55,20 @@ def modelGetPreds(carpeta, nom, device, dataset,outType="preds",val_type='test',
 			print(results)
 			
 	return results
+
+def stackModelsOutputs(models, device, dataset,outType="preds",val_type='test', verbose=False)
+	labels=[]
+	staked=[]
+	for  carpeta, nom in models:
+		y_true, y_pred=modelGetPreds(carpeta, nom, device, dataset,outType="preds",val_type='test', verbose=False)
+		if len(labels)==0:
+			labels =y_true
+		else:
+			if (labels ==y_true).all():
+				print("Warning el ground truth no coincide")
+			
+		staked.append(y_pred)
+	return labels, staked
+			
+		
 
