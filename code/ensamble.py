@@ -64,7 +64,7 @@ def stackModelsOutputs(models, device, dataset,outType="preds",val_type='test', 
 		if len(labels)==0:
 			labels =y_true
 		else:
-			if (labels ==y_true).all():
+			if labels ==y_true:
 				print("Warning el ground truth no coincide")
 			
 		staked.append(y_pred)
