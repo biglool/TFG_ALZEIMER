@@ -64,10 +64,11 @@ def stackModelsOutputs(models, device, dataset,outType="preds",val_type='test', 
 		y_true, y_pred=modelGetPreds(carpeta, nom, device, dataset,outType="preds",val_type='test', verbose=False)
 		if len(labels)==0:
 			labels =y_true
+			staked = np.array(y_pred)
 		elif not (labels ==y_true):
-			print("Warning el ground truth no coincide")
-			
-		staked.append([y_pred])
+			print("Warning el ground truth no coincide")			
+			np.concatenate((a, b))
+		 staked = np.concatenate(staked, np.array(y_pred))
 	return labels, staked
 			
 		
