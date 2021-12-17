@@ -72,17 +72,31 @@ def validate(model, loaders,optimizer,loss_func,batch_size, device,val_type='val
 
 	return val_loss/val_steps , y_true, y_pred
 
-def getLoaders(dataset, batch_size,train_idx,valid_idx,test_idx):
-	train_sampler = torch.utils.data.SubsetRandomSampler(train_idx)
-	valid_sampler = torch.utils.data.SubsetRandomSampler(valid_idx)
-	test_sampler = torch.utils.data.SubsetRandomSampler(test_idx)
-
-	loaders = {
+def getLoaders(dataset, batch_size,train_idx,valid_idx,test_idx, random=True):
+	
+	if random:
+		train_sampler = torch.utils.data.SubsetRandomSampler(train_idx)
+		valid_sampler = torch.utils.data.SubsetRandomSampler(valid_idx)
+		test_sampler = torch.utils.data.SubsetRandomSampler(test_idx)
+		
+		loaders = {
 		'train' : torch.utils.data.DataLoader(dataset, batch_size=batch_size, sampler=train_sampler),   
 		'valid'  : torch.utils.data.DataLoader(dataset, batch_size=batch_size, sampler=valid_sampler),
 		'test'  : torch.utils.data.DataLoader(dataset, batch_size=batch_size, sampler=test_sampler),
-	}
-	
+		}
+		
+	elif random==False:
+		
+		train_dataset = Subset(dataset, train_idx)
+		valid_dataset = Subset(dataset,valid_idx)
+		test_dataset = Subset(dataset,test_idx)
+
+		loaders = {
+			'train' : torch.utils.data.DataLoader(train_dataset, batch_size=batch_size),   
+			'valid'  : torch.utils.data.DataLoader(valid_dataset, batch_size=batch_size),
+			'test'  : torch.utils.data.DataLoader(test_dataset, batch_size=batch_size),
+		}
+
 	return loaders
 
 def getSplits(dataset):
