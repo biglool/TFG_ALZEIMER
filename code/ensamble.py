@@ -31,3 +31,23 @@ def getPred(model, loaders, device,outType="preds",val_type='test'):
 
 	return y_true, y_pred
 
+def modelGetPreds(carpeta, nom, device, dataset,outType="preds",val_type='test' verbose=False):
+
+	results=[]
+	
+	if os.path.isfile(carpeta + nom ):
+		
+		databaseinfo,config,sessioninfo,modelstate= loadCheck(carpeta, nom)
+		
+		dataset.setProblem(databaseinfo.problemType)
+		dataset.setCut(databaseinfo.cutId) 
+		model=generate_model(config.modelId)
+		model.to(device)	
+		loaders = getLoaders(dataset,config.batch_size,databaseinfo.train_idx,databaseinfo.valid_idx,databaseinfo.test_idx)   
+		model.load_state_dict(modelstate.statedic)
+		results=getPred(model, loaders, device,outType=outType,val_type=val_type)
+		if verbose:
+			print(results)
+			
+	return results
+
