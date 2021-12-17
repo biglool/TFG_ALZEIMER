@@ -83,7 +83,7 @@ def crossValidateVoteMax(models, device, dataset, K=5,verbose=False):
 		models_fold= [[model, "fold"+ str(fold) +".pt"] for model in models]
 		y_true, y_pred =voteMax(models_fold, device, dataset)
 		metrics= ut.getMetrics(0,y_true, y_pred)
-		resultats.append(resultat)
+		resultats.append(metrics)
 		if verbose:
 			print("Resultat Fold:"+ str(fold) )	
 			ut.printMetrics(metrics)		
