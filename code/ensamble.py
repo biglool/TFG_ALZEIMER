@@ -91,6 +91,6 @@ def crossValidateVoteMax(models, device, dataset, K=5,verbose=False):
 	if verbose:
 		print("Resultat Final:" )	
 		ut.printMetrics(res_final)
-		
+		ut.printConf(res_final[8],dataset.classes())
 	return res_final
 		
