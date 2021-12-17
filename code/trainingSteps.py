@@ -87,9 +87,9 @@ def getLoaders(dataset, batch_size,train_idx,valid_idx,test_idx, random=True):
 		
 	elif random==False:
 		
-		train_dataset = torch.utils.data.SubsetSubset(dataset, train_idx)
-		valid_dataset = torch.utils.data.SubsetSubset(dataset,valid_idx)
-		test_dataset = torch.utils.data.SubsetSubset(dataset,test_idx)
+		train_dataset = torch.utils.data.Subset(dataset, train_idx)
+		valid_dataset = torch.utils.data.Subset(dataset,valid_idx)
+		test_dataset = torch.utils.data.Subset(dataset,test_idx)
 
 		loaders = {
 			'train' : torch.utils.data.DataLoader(train_dataset, batch_size=batch_size),   
