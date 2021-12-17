@@ -31,7 +31,7 @@ def getPred(model, loaders, device,outType="preds",val_type='test'):
 
 	return y_true, y_pred
 
-def modelGetPreds(carpeta, nom, device, dataset,outType="preds",val_type='test' verbose=False):
+def modelGetPreds(carpeta, nom, device, dataset,outType="preds",val_type='test', verbose=False):
 
 	results=[]
 	
