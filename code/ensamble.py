@@ -1,6 +1,7 @@
 import torch
 import os
 import numpy as np
+from tfg.code.checkpoint import loadCheck,databaseInfo,sessionConfig,modelState,trainSessionInfo
 
 def getPred(model, loaders, device,outType="preds",val_type='test'):
 
