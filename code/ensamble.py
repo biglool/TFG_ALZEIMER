@@ -5,7 +5,7 @@ from tfg.code.checkpoint import loadCheck,databaseInfo,sessionConfig,modelState,
 from tfg.code.modelLoader import generate_model
 from tfg.code.trainingSteps import getLoaders
 import collections 
-
+from collections import Counter
 
 def getPred(model, loaders, device,outType="preds",val_type='test'):
 
@@ -67,9 +67,18 @@ def stackModelsOutputs(models, device, dataset,outType="preds",val_type='test', 
 		elif not (labels ==y_true):
 			print("Warning el ground truth no coincide")
 		staked.append(y_pred)
+			
+	return labels, np.array(staked).T
+			
+def voteMax(models, device, dataset, verbose=False):
 
-			
-	return labels, staked
-			
+	true, pred = stackModelsOutputs(models, device, dataset , verbose=verbose)
+	votemax=[Counter(predit).most_common(1)[0][0] for predit in pred]
+	return true, votemax
+	
+def crossValidateVoteMax(models, device, dataset, K=5,verbose=False):
+
+	for fold in range(1,5):
+		models_fold= [[model, "fold"+ str(fold) +".pt"] for model in models]
+		true, pred =voteMax(models, device, dataset, verbose=verbose)
 		
-
