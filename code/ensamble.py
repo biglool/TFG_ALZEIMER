@@ -4,6 +4,7 @@ import numpy as np
 from tfg.code.checkpoint import loadCheck,databaseInfo,sessionConfig,modelState,trainSessionInfo
 from tfg.code.modelLoader import generate_model
 from tfg.code.trainingSteps import getLoaders
+import collections 
 
 
 def getPred(model, loaders, device,outType="preds",val_type='test'):
@@ -63,9 +64,8 @@ def stackModelsOutputs(models, device, dataset,outType="preds",val_type='test', 
 		y_true, y_pred=modelGetPreds(carpeta, nom, device, dataset,outType="preds",val_type='test', verbose=False)
 		if len(labels)==0:
 			labels =y_true
-		else:
-			if labels ==y_true:
-				print("Warning el ground truth no coincide")
+		elif not (labels ==y_true):
+			print("Warning el ground truth no coincide")
 			
 		staked.append(y_pred)
 	return labels, staked
