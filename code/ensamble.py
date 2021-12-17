@@ -48,7 +48,7 @@ def modelGetPreds(carpeta, nom, device, dataset,outType="preds",val_type='test',
 		dataset.setCut(databaseinfo.cutId) 
 		model=generate_model(config.modelId)
 		model.to(device)	
-		loaders = getLoaders(dataset,config.batch_size,databaseinfo.train_idx,databaseinfo.valid_idx,databaseinfo.test_idx)   
+		loaders = getLoaders(dataset,config.batch_size,databaseinfo.train_idx,databaseinfo.valid_idx,databaseinfo.test_idx,random=False)   
 		model.load_state_dict(modelstate.statedic)
 		results=getPred(model, loaders, device,outType=outType,val_type=val_type)
 		if verbose:
