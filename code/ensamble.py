@@ -56,7 +56,7 @@ def modelGetPreds(carpeta, nom, device, dataset,outType="preds",val_type='test',
 			
 	return results
 
-def stackModelsOutputs(models, device, dataset,outType="preds",val_type='test', verbose=False)
+def stackModelsOutputs(models, device, dataset,outType="preds",val_type='test', verbose=False):
 	labels=[]
 	staked=[]
 	for  carpeta, nom in models:
