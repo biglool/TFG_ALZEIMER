@@ -99,7 +99,9 @@ def getMetrics(loss,true, pred):
     metrics.append(0)
 
   metrics.append(mets.roc_auc_score(true, pred))
-  metrics.append(mets.confusion_matrix(true, pred))
+  cf=mets.confusion_matrix(true, pred)
+  cfnorm= cf / cf.astype(np.float).sum(axis=1, keepdims=True) 
+  metrics.append(cfnorm)
 
   return metrics
 
