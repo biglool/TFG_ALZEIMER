@@ -87,7 +87,7 @@ def voteMax(models, device, dataset,  voteType="Hard",verbose=False):
 		suma=np.sum(pred,axis = 0)
 		print(suma[0][0])
 		print(suma)
-		print(np.array(suma).T)
+		print(np.argmax(suma, axis=1))
 	return true, votemax
 	
 def crossValidateVoteMax(models, device, dataset, K=5, voteType="Hard",verbose=False):
