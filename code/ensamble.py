@@ -70,19 +70,23 @@ def stackModelsOutputs(models, device, dataset,outType="preds",val_type='test', 
 		elif not (labels ==y_true):
 			print("Warning el ground truth no coincide")
 		staked.append(y_pred)
-	print(staked)	
-	return labels, np.array(staked).T
+
+	return labels, staked
 			
 def voteMax(models, device, dataset,  voteType="Hard",verbose=False):
 
 	if voteType=="Hard":
 		true, pred = stackModelsOutputs(models, device, dataset , verbose=verbose)
-		votemax=[Counter(predit).most_common(1)[0][0] for predit in pred]
+		votemax=[Counter(predit).most_common(1)[0][0] for predit in np.array(pred).T]
 	elif voteType=="Soft":
 		true, pred = stackModelsOutputs(models, device, dataset ,outType="probs", verbose=verbose)
 		#for classes in model.classes:
 		#sumar i decidir el guanyador/ adjuntar
 		print(*pred, sep='\n')
+		for modpre in pred: print(modpre[0][0])
+		suma=np.sum(pred,axis = 0)
+		print(suma[0][0])
+		print(np.array(suma).T)
 	return true, votemax
 	
 def crossValidateVoteMax(models, device, dataset, K=5, voteType="Hard",verbose=False):
