@@ -37,7 +37,7 @@ def getPred(model, loaders, device,outType="preds",val_type='test'):
 			y_true.extend(labels) 
 
 			pass
-	print(y_pred)
+
 	return y_true, y_pred
 
 def modelGetPreds(carpeta, nom, device, dataset,outType="preds",val_type='test', verbose=False):
@@ -70,7 +70,7 @@ def stackModelsOutputs(models, device, dataset,outType="preds",val_type='test', 
 		elif not (labels ==y_true):
 			print("Warning el ground truth no coincide")
 		staked.append(y_pred)
-			
+	print(staked)	
 	return labels, np.array(staked).T
 			
 def voteMax(models, device, dataset,  voteType="Hard",verbose=False):
