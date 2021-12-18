@@ -71,13 +71,20 @@ def stackModelsOutputs(models, device, dataset,outType="preds",val_type='test', 
 			
 	return labels, np.array(staked).T
 			
-def voteMax(models, device, dataset, verbose=False):
+def voteMax(models, device, dataset,  voteType="Hard",verbose=False):
 
-	true, pred = stackModelsOutputs(models, device, dataset , verbose=verbose)
-	votemax=[Counter(predit).most_common(1)[0][0] for predit in pred]
+	if voteType=="Hard":
+		true, pred = stackModelsOutputs(models, device, dataset , verbose=verbose)
+		votemax=[Counter(predit).most_common(1)[0][0] for predit in pred]
+	elif voteType=="Soft":
+		true, pred = stackModelsOutputs(models, device, dataset ,outType="probs", verbose=verbose)
+		print(pred)
+		#for classes in model.classes:
+		#sumar i decidir el guanyador/ adjuntar
+		
 	return true, votemax
 	
-def crossValidateVoteMax(models, device, dataset, K=5,verbose=False):
+def crossValidateVoteMax(models, device, dataset, K=5, voteType="Hard",verbose=False):
 	resultats=[]
 	for fold in range(1, K+1):
 		models_fold= [[model, "fold"+ str(fold) +".pt"] for model in models]
