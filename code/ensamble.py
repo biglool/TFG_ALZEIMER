@@ -78,16 +78,12 @@ def voteMax(models, device, dataset,  voteType="Hard",verbose=False):
 	if voteType=="Hard":
 		true, pred = stackModelsOutputs(models, device, dataset , verbose=verbose)
 		votemax=[Counter(predit).most_common(1)[0][0] for predit in np.array(pred).T]
+		
 	elif voteType=="Soft":
 		true, pred = stackModelsOutputs(models, device, dataset ,outType="probs", verbose=verbose)
-		#for classes in model.classes:
-		#sumar i decidir el guanyador/ adjuntar
-		print(*pred, sep='\n')
-		for modpre in pred: print(modpre[0][0])
 		suma=np.sum(pred,axis = 0)
-		print(suma[0][0])
-		print(suma)
-		print(np.argmax(suma, axis=1))
+		votemax=np.argmax(suma, axis=1)
+		
 	return true, votemax
 	
 def crossValidateVoteMax(models, device, dataset, K=5, voteType="Hard",verbose=False):
