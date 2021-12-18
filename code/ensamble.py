@@ -86,6 +86,7 @@ def voteMax(models, device, dataset,  voteType="Hard",verbose=False):
 		for modpre in pred: print(modpre[0][0])
 		suma=np.sum(pred,axis = 0)
 		print(suma[0][0])
+		print(suma)
 		print(np.array(suma).T)
 	return true, votemax
 	
