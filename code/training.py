@@ -25,7 +25,7 @@ def createExperiment(carpeta,nom,problemType,cut,train_idx,test_idx,model,lr,bat
 
 	
 	
-def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, metrica ="loss",verbose=False):
+def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, metrica ="loss",weights=False,verbose=False):
 
 	
 	if os.path.isfile(carpeta + nom ):
@@ -42,8 +42,11 @@ def trainExperiment(carpeta, nom, device, dataset, earlyStop=False, metrica ="lo
 
 		model=generate_model(config.modelId)
 		model.to(device)	
-		optimizer = optim.Adam(model.parameters(), lr = config.lr) 
-		loss_func = nn.CrossEntropyLoss() 
+		optimizer = optim.Adam(model.parameters(), lr = config.lr, ) 
+		if weights:
+			loss_func = nn.CrossEntropyLoss() 
+		else:
+			loss_func = nn.CrossEntropyLoss(wheight = dataset.class_weights()) 
 		model.load_state_dict(modelstate.statedic)
 		optimizer.load_state_dict(modelstate.optdic)
 		
